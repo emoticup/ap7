@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to  emoticup</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Add custom CSS styles here */
+    .img-container {
+      margin-top: 150px; /* Adjust the margin as needed */
+    }
+
+    .emoticup-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 70px;
+    }
+
+    .emoti-text {
+      color: yellow;
+    }
+  </style>
+</head>
+
+<body style="background-image: url('https://miss-scarletts.com/wp-content/uploads/2019/08/large-images_0003_home-2.png'); background-size: cover; background-position: center; height: 100vh;">
+  <div class="container text-center">
+    <!-- Display the title "Emoticup" with "Emoti" in yellow at the top of the page -->
+    <h1 class="emoticup-title mb-5">Hi, Welcome to  <span class="emoti-text"> emoti</span>cup  Admin Portal!</h1>
+    
+    <div class="card mx-auto" style="width: 18rem;">
+      <div class="card-body text-center" id="loginFormContainer"> 
+        <form name="submit-to-google-sheet" onsubmit="loginSuccess(); return false;">
+          <div class="mb-3">
+            <input name="Username" type="text" class="form-control" placeholder="Username" required>
+          </div>
+          <div class="mb-3">
+            <input name="Password" type="password" class="form-control" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button> 
+        </form>
+      </div>
+      <div id="loginMessage" style="display: none; color: green; margin-top: 10px;"></div>
+      <div id="feedbackLink" style="display: none; margin-top: 10px;">
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    var registeredUsers = {
+      "Varija": "vp@123",
+      // Add more users as needed
+    };
+
+    function loginSuccess() {
+      var username = document.forms["submit-to-google-sheet"]["Username"].value;
+      var password = document.forms["submit-to-google-sheet"]["Password"].value;
+
+      if (registeredUsers[username] && registeredUsers[username] === password) {
+        // Hide the login form container
+        document.getElementById('loginFormContainer').style.display = 'none';
+
+        // Display login success message
+        document.getElementById('loginMessage').style.display = 'block';
+        document.getElementById('loginMessage').innerHTML = 'Login successful! Redirecting...';
+
+        // Display the feedback page link
+        document.getElementById('feedbackLink').style.display = 'block';
+
+        // Redirect to the feedback.html page after a delay (e.g., 2 seconds)
+        setTimeout(function() {
+          window.location.href = 'C:/Users/NPD EMC/Desktop/joshi 12/employeelist.html';
+
+        }, 2000);
+      } else {
+        // Display an error message if the credentials are incorrect
+        document.getElementById('loginMessage').style.display = 'block';
+        document.getElementById('loginMessage').innerHTML = 'Invalid username or password. Please try again.';
+
+        // Hide the feedback page link if the login fails
+        document.getElementById('feedbackLink').style.display = 'none';
+      }
+
+      // Prevent the form from actually submitting
+      return false;
+    }
+  </script>
+</body>
+</html>
